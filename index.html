@@ -1,234 +1,17 @@
 ﻿<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><script>if(navigator.userAgent.match(/MSIE|Internet Explorer/i)||navigator.userAgent.match(/Trident\/7\..*?rv:11/i)){var href=document.location.href;if(!href.match(/[?&]nowprocket/)){if(href.indexOf("?")==-1){if(href.indexOf("#")==-1){document.location.href=href+"?nowprocket=1"}else{document.location.href=href.replace("#","?nowprocket=1#")}}else{if(href.indexOf("#")==-1){document.location.href=href+"&nowprocket=1"}else{document.location.href=href.replace("#","&nowprocket=1#")}}}}</script><script>class RocketLazyLoadScripts{constructor(){this.triggerEvents=["keydown","mousedown","mousemove","touchmove","touchstart","touchend","wheel"],this.userEventHandler=this._triggerListener.bind(this),this.touchStartHandler=this._onTouchStart.bind(this),this.touchMoveHandler=this._onTouchMove.bind(this),this.touchEndHandler=this._onTouchEnd.bind(this),this.clickHandler=this._onClick.bind(this),this.interceptedClicks=[],window.addEventListener("pageshow",(e=>{this.persisted=e.persisted})),window.addEventListener("DOMContentLoaded",(()=>{this._preconnect3rdParties()})),this.delayedScripts={normal:[],async:[],defer:[]},this.allJQueries=[]}_addUserInteractionListener(e){document.hidden?e._triggerListener():(this.triggerEvents.forEach((t=>window.addEventListener(t,e.userEventHandler,{passive:!0}))),window.addEventListener("touchstart",e.touchStartHandler,{passive:!0}),window.addEventListener("mousedown",e.touchStartHandler),document.addEventListener("visibilitychange",e.userEventHandler))}_removeUserInteractionListener(){this.triggerEvents.forEach((e=>window.removeEventListener(e,this.userEventHandler,{passive:!0}))),document.removeEventListener("visibilitychange",this.userEventHandler)}_onTouchStart(e){"HTML"!==e.target.tagName&&(window.addEventListener("touchend",this.touchEndHandler),window.addEventListener("mouseup",this.touchEndHandler),window.addEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.addEventListener("mousemove",this.touchMoveHandler),e.target.addEventListener("click",this.clickHandler),this._renameDOMAttribute(e.target,"onclick","rocket-onclick"))}_onTouchMove(e){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler),e.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(e.target,"rocket-onclick","onclick")}_onTouchEnd(e){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler)}_onClick(e){e.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(e.target,"rocket-onclick","onclick"),this.interceptedClicks.push(e),e.preventDefault(),e.stopPropagation(),e.stopImmediatePropagation()}_replayClicks(){window.removeEventListener("touchstart",this.touchStartHandler,{passive:!0}),window.removeEventListener("mousedown",this.touchStartHandler),this.interceptedClicks.forEach((e=>{e.target.dispatchEvent(new MouseEvent("click",{view:e.view,bubbles:!0,cancelable:!0}))}))}_renameDOMAttribute(e,t,n){e.hasAttribute&&e.hasAttribute(t)&&(event.target.setAttribute(n,event.target.getAttribute(t)),event.target.removeAttribute(t))}_triggerListener(){this._removeUserInteractionListener(this),"loading"===document.readyState?document.addEventListener("DOMContentLoaded",this._loadEverythingNow.bind(this)):this._loadEverythingNow()}_preconnect3rdParties(){let e=[];document.querySelectorAll("script[type=rocketlazyloadscript]").forEach((t=>{if(t.hasAttribute("src")){const n=new URL(t.src).origin;n!==location.origin&&e.push({src:n,crossOrigin:t.crossOrigin||"module"===t.getAttribute("data-rocket-type")})}})),e=[...new Map(e.map((e=>[JSON.stringify(e),e]))).values()],this._batchInjectResourceHints(e,"preconnect")}async _loadEverythingNow(){this.lastBreath=Date.now(),this._delayEventListeners(),this._delayJQueryReady(this),this._handleDocumentWrite(),this._registerAllDelayedScripts(),this._preloadAllScripts(),await this._loadScriptsFromList(this.delayedScripts.normal),await this._loadScriptsFromList(this.delayedScripts.defer),await this._loadScriptsFromList(this.delayedScripts.async);try{await this._triggerDOMContentLoaded(),await this._triggerWindowLoad()}catch(e){}window.dispatchEvent(new Event("rocket-allScriptsLoaded")),this._replayClicks()}_registerAllDelayedScripts(){document.querySelectorAll("script[type=rocketlazyloadscript]").forEach((e=>{e.hasAttribute("src")?e.hasAttribute("async")&&!1!==e.async?this.delayedScripts.async.push(e):e.hasAttribute("defer")&&!1!==e.defer||"module"===e.getAttribute("data-rocket-type")?this.delayedScripts.defer.push(e):this.delayedScripts.normal.push(e):this.delayedScripts.normal.push(e)}))}async _transformScript(e){return await this._littleBreath(),new Promise((t=>{const n=document.createElement("script");[...e.attributes].forEach((e=>{let t=e.nodeName;"type"!==t&&("data-rocket-type"===t&&(t="type"),n.setAttribute(t,e.nodeValue))})),e.hasAttribute("src")?(n.addEventListener("load",t),n.addEventListener("error",t)):(n.text=e.text,t());try{e.parentNode.replaceChild(n,e)}catch(e){t()}}))}async _loadScriptsFromList(e){const t=e.shift();return t?(await this._transformScript(t),this._loadScriptsFromList(e)):Promise.resolve()}_preloadAllScripts(){this._batchInjectResourceHints([...this.delayedScripts.normal,...this.delayedScripts.defer,...this.delayedScripts.async],"preload")}_batchInjectResourceHints(e,t){var n=document.createDocumentFragment();e.forEach((e=>{if(e.src){const i=document.createElement("link");i.href=e.src,i.rel=t,"preconnect"!==t&&(i.as="script"),e.getAttribute&&"module"===e.getAttribute("data-rocket-type")&&(i.crossOrigin=!0),e.crossOrigin&&(i.crossOrigin=e.crossOrigin),n.appendChild(i)}})),document.head.appendChild(n)}_delayEventListeners(){let e={};function t(t,n){!function(t){function n(n){return e[t].eventsToRewrite.indexOf(n)>=0?"rocket-"+n:n}e[t]||(e[t]={originalFunctions:{add:t.addEventListener,remove:t.removeEventListener},eventsToRewrite:[]},t.addEventListener=function(){arguments[0]=n(arguments[0]),e[t].originalFunctions.add.apply(t,arguments)},t.removeEventListener=function(){arguments[0]=n(arguments[0]),e[t].originalFunctions.remove.apply(t,arguments)})}(t),e[t].eventsToRewrite.push(n)}function n(e,t){let n=e[t];Object.defineProperty(e,t,{get:()=>n||function(){},set(i){e["rocket"+t]=n=i}})}t(document,"DOMContentLoaded"),t(window,"DOMContentLoaded"),t(window,"load"),t(window,"pageshow"),t(document,"readystatechange"),n(document,"onreadystatechange"),n(window,"onload"),n(window,"onpageshow")}_delayJQueryReady(e){let t=window.jQuery;Object.defineProperty(window,"jQuery",{get:()=>t,set(n){if(n&&n.fn&&!e.allJQueries.includes(n)){n.fn.ready=n.fn.init.prototype.ready=function(t){e.domReadyFired?t.bind(document)(n):document.addEventListener("rocket-DOMContentLoaded",(()=>t.bind(document)(n)))};const t=n.fn.on;n.fn.on=n.fn.init.prototype.on=function(){if(this[0]===window){function e(e){return e.split(" ").map((e=>"load"===e||0===e.indexOf("load.")?"rocket-jquery-load":e)).join(" ")}"string"==typeof arguments[0]||arguments[0]instanceof String?arguments[0]=e(arguments[0]):"object"==typeof arguments[0]&&Object.keys(arguments[0]).forEach((t=>{delete Object.assign(arguments[0],{[e(t)]:arguments[0][t]})[t]}))}return t.apply(this,arguments),this},e.allJQueries.push(n)}t=n}})}async _triggerDOMContentLoaded(){this.domReadyFired=!0,await this._littleBreath(),document.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),window.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),document.dispatchEvent(new Event("rocket-readystatechange")),await this._littleBreath(),document.rocketonreadystatechange&&document.rocketonreadystatechange()}async _triggerWindowLoad(){await this._littleBreath(),window.dispatchEvent(new Event("rocket-load")),await this._littleBreath(),window.rocketonload&&window.rocketonload(),await this._littleBreath(),this.allJQueries.forEach((e=>e(window).trigger("rocket-jquery-load"))),await this._littleBreath();const e=new Event("rocket-pageshow");e.persisted=this.persisted,window.dispatchEvent(e),await this._littleBreath(),window.rocketonpageshow&&window.rocketonpageshow({persisted:this.persisted})}_handleDocumentWrite(){const e=new Map;document.write=document.writeln=function(t){const n=document.currentScript,i=document.createRange(),r=n.parentElement;let o=e.get(n);void 0===o&&(o=n.nextSibling,e.set(n,o));const s=document.createDocumentFragment();i.setStart(s,0),s.appendChild(i.createContextualFragment(t)),r.insertBefore(s,o)}}async _littleBreath(){Date.now()-this.lastBreath>45&&(await this._requestAnimFrame(),this.lastBreath=Date.now())}async _requestAnimFrame(){return document.hidden?new Promise((e=>setTimeout(e))):new Promise((e=>requestAnimationFrame(e)))}static run(){const e=new RocketLazyLoadScripts;e._addUserInteractionListener(e)}}RocketLazyLoadScripts.run();</script>
 	
-		<title>⚡Efeitos VFX com o Celular</title>
+		<title>Venda todos os dias | VelDec</title>
 <meta name="robots" content="max-image-preview:large">
 	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
 	
 <!-- Google Tag Manager by PYS -->
-    <script type="rocketlazyloadscript" data-cfasync="false" data-pagespeed-no-defer="">
-	    window.dataLayerPYS = window.dataLayerPYS || [];
-	</script>
-<!-- End Google Tag Manager by PYS --><script type="rocketlazyloadscript" data-rocket-type="application/javascript" id="pys-version-script">console.log('PixelYourSite Free version 11.1.0');</script>
-<link rel="alternate" type="application/rss+xml" title="Feed para ⚡Efeitos VFX com o Celular �" href="https://eduardosrocinski.com.br/feed/">
-<link rel="alternate" type="application/rss+xml" title="Feed de comentários para ⚡Efeitos VFX com o Celular �" href="https://eduardosrocinski.com.br/comments/feed/">
-		<!-- This site uses the Google Analytics by MonsterInsights plugin v10.0.3 - Using Analytics tracking - https://www.monsterinsights.com/ -->
-							<script type="rocketlazyloadscript" src="//www.googletagmanager.com/gtag/js?id=G-CP8LNH39ND" data-cfasync="false" data-wpfc-render="false" async=""></script>
-			<script type="rocketlazyloadscript" data-cfasync="false" data-wpfc-render="false">
-				var mi_version = '10.0.3';
-				var mi_track_user = true;
-				var mi_no_track_reason = '';
-								var MonsterInsightsDefaultLocations = {"page_location":"https:\/\/eduardosrocinski.com.br\/"};
-								if ( typeof MonsterInsightsPrivacyGuardFilter === 'function' ) {
-					var MonsterInsightsLocations = (typeof MonsterInsightsExcludeQuery === 'object') ? MonsterInsightsPrivacyGuardFilter( MonsterInsightsExcludeQuery ) : MonsterInsightsPrivacyGuardFilter( MonsterInsightsDefaultLocations );
-				} else {
-					var MonsterInsightsLocations = (typeof MonsterInsightsExcludeQuery === 'object') ? MonsterInsightsExcludeQuery : MonsterInsightsDefaultLocations;
-				}
-
-								var disableStrs = [
-										'ga-disable-G-CP8LNH39ND',
-									];
-
-				/* Function to detect opted out users */
-				function __gtagTrackerIsOptedOut() {
-					for (var index = 0; index < disableStrs.length; index++) {
-						if (document.cookie.indexOf(disableStrs[index] + '=true') > -1) {
-							return true;
-						}
-					}
-
-					return false;
-				}
-
-				/* Disable tracking if the opt-out cookie exists. */
-				if (__gtagTrackerIsOptedOut()) {
-					for (var index = 0; index < disableStrs.length; index++) {
-						window[disableStrs[index]] = true;
-					}
-				}
-
-				/* Opt-out function */
-				function __gtagTrackerOptout() {
-					for (var index = 0; index < disableStrs.length; index++) {
-						document.cookie = disableStrs[index] + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
-						window[disableStrs[index]] = true;
-					}
-				}
-
-				if ('undefined' === typeof gaOptout) {
-					function gaOptout() {
-						__gtagTrackerOptout();
-					}
-				}
-								window.dataLayerPYS = window.dataLayerPYS || [];
-
-				window.MonsterInsightsDualTracker = {
-					helpers: {},
-					trackers: {},
-				};
-				if (mi_track_user) {
-					function __gtagDataLayer() {
-						dataLayer.push(arguments);
-					}
-
-					function __gtagTracker(type, name, parameters) {
-						if (!parameters) {
-							parameters = {};
-						}
-
-						if (parameters.send_to) {
-							__gtagDataLayer.apply(null, arguments);
-							return;
-						}
-
-						if (type === 'event') {
-														parameters.send_to = monsterinsights_frontend.v4_id;
-							var hookName = name;
-							if (typeof parameters['event_category'] !== 'undefined') {
-								hookName = parameters['event_category'] + ':' + name;
-							}
-
-							if (typeof MonsterInsightsDualTracker.trackers[hookName] !== 'undefined') {
-								MonsterInsightsDualTracker.trackers[hookName](parameters);
-							} else {
-								__gtagDataLayer('event', name, parameters);
-							}
-							
-						} else {
-							__gtagDataLayer.apply(null, arguments);
-						}
-					}
-
-					__gtagTracker('js', new Date());
-					__gtagTracker('set', {
-						'developer_id.dZGIzZG': true,
-											});
-					if ( MonsterInsightsLocations.page_location ) {
-						__gtagTracker('set', MonsterInsightsLocations);
-					}
-										__gtagTracker('config', 'G-CP8LNH39ND', {"forceSSL":"true","link_attribution":"true"} );
-										window.gtag = __gtagTracker;										(function () {
-						/* https://developers.google.com/analytics/devguides/collection/analyticsjs/ */
-						/* ga and __gaTracker compatibility shim. */
-						var noopfn = function () {
-							return null;
-						};
-						var newtracker = function () {
-							return new Tracker();
-						};
-						var Tracker = function () {
-							return null;
-						};
-						var p = Tracker.prototype;
-						p.get = noopfn;
-						p.set = noopfn;
-						p.send = function () {
-							var args = Array.prototype.slice.call(arguments);
-							args.unshift('send');
-							__gaTracker.apply(null, args);
-						};
-						var __gaTracker = function () {
-							var len = arguments.length;
-							if (len === 0) {
-								return;
-							}
-							var f = arguments[len - 1];
-							if (typeof f !== 'object' || f === null || typeof f.hitCallback !== 'function') {
-								if ('send' === arguments[0]) {
-									var hitConverted, hitObject = false, action;
-									if ('event' === arguments[1]) {
-										if ('undefined' !== typeof arguments[3]) {
-											hitObject = {
-												'eventAction': arguments[3],
-												'eventCategory': arguments[2],
-												'eventLabel': arguments[4],
-												'value': arguments[5] ? arguments[5] : 1,
-											}
-										}
-									}
-									if ('pageview' === arguments[1]) {
-										if ('undefined' !== typeof arguments[2]) {
-											hitObject = {
-												'eventAction': 'page_view',
-												'page_path': arguments[2],
-											}
-										}
-									}
-									if (typeof arguments[2] === 'object') {
-										hitObject = arguments[2];
-									}
-									if (typeof arguments[5] === 'object') {
-										Object.assign(hitObject, arguments[5]);
-									}
-									if ('undefined' !== typeof arguments[1].hitType) {
-										hitObject = arguments[1];
-										if ('pageview' === hitObject.hitType) {
-											hitObject.eventAction = 'page_view';
-										}
-									}
-									if (hitObject) {
-										action = 'timing' === arguments[1].hitType ? 'timing_complete' : hitObject.eventAction;
-										hitConverted = mapArgs(hitObject);
-										__gtagTracker('event', action, hitConverted);
-									}
-								}
-								return;
-							}
-
-							function mapArgs(args) {
-								var arg, hit = {};
-								var gaMap = {
-									'eventCategory': 'event_category',
-									'eventAction': 'event_action',
-									'eventLabel': 'event_label',
-									'eventValue': 'event_value',
-									'nonInteraction': 'non_interaction',
-									'timingCategory': 'event_category',
-									'timingVar': 'name',
-									'timingValue': 'value',
-									'timingLabel': 'event_label',
-									'page': 'page_path',
-									'location': 'page_location',
-									'title': 'page_title',
-									'referrer' : 'page_referrer',
-								};
-								for (arg in args) {
-																		if (!(!args.hasOwnProperty(arg) || !gaMap.hasOwnProperty(arg))) {
-										hit[gaMap[arg]] = args[arg];
-									} else {
-										hit[arg] = args[arg];
-									}
-								}
-								return hit;
-							}
-
-							try {
-								f.hitCallback();
-							} catch (ex) {
-							}
-						};
-						__gaTracker.create = newtracker;
-						__gaTracker.getByName = newtracker;
-						__gaTracker.getAll = function () {
-							return [];
-						};
-						__gaTracker.remove = noopfn;
-						__gaTracker.loaded = true;
-						window['__gaTracker'] = __gaTracker;
-					})();
-									} else {
-										console.log("");
-					(function () {
-						function __gtagTracker() {
-							return null;
-						}
-
-						window['__gtagTracker'] = __gtagTracker;
-						window['gtag'] = __gtagTracker;
-					})();
-									}
-			</script>
-							<!-- / Google Analytics by MonsterInsights -->
-		
+    <script async src="https://www.googletagmanager.com/gtag/js?id=SEU-G-AQUI"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'SEU-G-AQUI');
+</script>
 
 <link rel="stylesheet" id="hello-elementor-css" href="css/style.min.css" media="all">
 <link rel="stylesheet" id="hello-elementor-theme-style-css" href="css/theme.min.css" media="all">
@@ -262,70 +45,18 @@
 <link data-minify="1" rel="stylesheet" id="elementor-gf-local-montserrat-css" href="css/elementor-gf-local-montserrat.css" media="all">
 <link rel="stylesheet" id="elementor-icons-shared-0-css" href="css/fontawesome.min.css" media="all">
 <link data-minify="1" rel="stylesheet" id="elementor-icons-fa-solid-css" href="css/solid.min.css" media="all">
-<script type="rocketlazyloadscript" src="js/frontend-gtag.min.js" id="monsterinsights-frontend-script-js" async="" data-wp-strategy="async"></script>
-<script data-cfasync="false" data-wpfc-render="false" id="monsterinsights-frontend-script-js-extra">var monsterinsights_frontend = {"js_events_tracking":"true","download_extensions":"doc,pdf,ppt,zip,xls,docx,pptx,xlsx","inbound_paths":"[{"path":"\\\/go\\\/","label":"affiliate"},{"path":"\\\/recommend\\\/","label":"affiliate"}]","home_url":"https:\/\/eduardosrocinski.com.br","hash_tracking":"false","v4_id":"G-CP8LNH39ND"};</script>
+
 <script type="rocketlazyloadscript" src="js/jquery.min.js" id="jquery-core-js" defer=""></script>
 <script type="rocketlazyloadscript" src="js/jquery-migrate.min.js" id="jquery-migrate-js" defer=""></script>
-<script type="rocketlazyloadscript" src="js/jquery.bind-first-0.2.3.min.js" id="jquery-bind-first-js" defer=""></script>
-<script type="rocketlazyloadscript" src="js/js.cookie-2.1.3.min.js" id="js-cookie-pys-js" defer=""></script>
-<script type="rocketlazyloadscript" src="js/tld.min.js" id="js-tld-js" defer=""></script>
-<script id="pys-js-extra">
-var pysOptions = {"staticEvents":{"facebook":{"init_event":[{"delay":0,"type":"static","ajaxFire":false,"name":"PageView","pixelIds":["1110408347035963"],"eventID":"9ad4f055-37dc-4dd3-96a6-4cc0aa28b5bc","params":{"page_title":"Capcut Hard 2.0 - Efeitos Marvel","post_type":"page","post_id":4293,"plugin":"PixelYourSite","user_role":"guest","event_url":"eduardosrocinski.com.br\/"},"e_id":"init_event","ids":[],"hasTimeWindow":false,"timeWindow":0,"woo_order":"","edd_order":""}]}},"dynamicEvents":[],"triggerEvents":[],"triggerEventTypes":[],"facebook":{"pixelIds":["1110408347035963"],"advancedMatching":{"external_id":"addfbeeecafcdfaddcfddaefb"},"advancedMatchingEnabled":true,"removeMetadata":false,"wooVariableAsSimple":false,"serverApiEnabled":true,"wooCRSendFromServer":false,"send_external_id":true,"enabled_medical":false,"do_not_track_medical_param":["event_url","post_title","page_title","landing_page","content_name","categories","category_name","tags"],"meta_ldu":false},"ga":{"trackingIds":["G-VJC8C9T9XQ"],"commentEventEnabled":true,"downloadEnabled":true,"formEventEnabled":true,"crossDomainEnabled":false,"crossDomainAcceptIncoming":false,"crossDomainDomains":[],"isDebugEnabled":[],"serverContainerUrls":{"G-VJC8C9T9XQ":{"enable_server_container":"","server_container_url":"","transport_url":""}},"additionalConfig":{"G-VJC8C9T9XQ":{"first_party_collection":true}},"disableAdvertisingFeatures":false,"disableAdvertisingPersonalization":false,"wooVariableAsSimple":true,"custom_page_view_event":false},"debug":"","siteUrl":"https:\/\/eduardosrocinski.com.br","ajaxUrl":"https:\/\/eduardosrocinski.com.br\/wp-admin\/admin-ajax.php","ajax_event":"7dee2c1274","enable_remove_download_url_param":"1","cookie_duration":"7","last_visit_duration":"60","enable_success_send_form":"","ajaxForServerEvent":"1","ajaxForServerStaticEvent":"1","send_external_id":"1","external_id_expire":"180","track_cookie_for_subdomains":"1","google_consent_mode":"1","gdpr":{"ajax_enabled":false,"all_disabled_by_api":false,"facebook_disabled_by_api":false,"analytics_disabled_by_api":false,"google_ads_disabled_by_api":false,"pinterest_disabled_by_api":false,"bing_disabled_by_api":false,"externalID_disabled_by_api":false,"facebook_prior_consent_enabled":true,"analytics_prior_consent_enabled":true,"google_ads_prior_consent_enabled":null,"pinterest_prior_consent_enabled":true,"bing_prior_consent_enabled":true,"cookiebot_integration_enabled":false,"cookiebot_facebook_consent_category":"marketing","cookiebot_analytics_consent_category":"statistics","cookiebot_tiktok_consent_category":"marketing","cookiebot_google_ads_consent_category":"marketing","cookiebot_pinterest_consent_category":"marketing","cookiebot_bing_consent_category":"marketing","consent_magic_integration_enabled":false,"real_cookie_banner_integration_enabled":false,"cookie_notice_integration_enabled":false,"cookie_law_info_integration_enabled":false,"analytics_storage":{"enabled":true,"value":"granted","filter":false},"ad_storage":{"enabled":true,"value":"granted","filter":false},"ad_user_data":{"enabled":true,"value":"granted","filter":false},"ad_personalization":{"enabled":true,"value":"granted","filter":false}},"cookie":{"disabled_all_cookie":false,"disabled_start_session_cookie":false,"disabled_advanced_form_data_cookie":false,"disabled_landing_page_cookie":false,"disabled_first_visit_cookie":false,"disabled_trafficsource_cookie":false,"disabled_utmTerms_cookie":false,"disabled_utmId_cookie":false},"tracking_analytics":{"TrafficSource":"direct","TrafficLanding":"undefined","TrafficUtms":[],"TrafficUtmsId":[]},"GATags":{"ga_datalayer_type":"default","ga_datalayer_name":"dataLayerPYS"},"woo":{"enabled":false},"edd":{"enabled":false},"cache_bypass":"1772959499"};
 </script>
-<script type="rocketlazyloadscript" data-minify="1" src="js/public.js" id="pys-js" defer=""></script>
 <script type="rocketlazyloadscript" src="js/purify.min.js" id="dom-purify-js" defer=""></script>
-<link rel="https://api.w.org/" href="https://eduardosrocinski.com.br/wp-json/"><link rel="alternate" title="JSON" type="application/json" href="https://eduardosrocinski.com.br/wp-json/wp/v2/pages/4293"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://eduardosrocinski.com.br/xmlrpc.php?rsd">
-<meta name="generator" content="WordPress 6.8.3">
-<link rel="canonical" href="https://eduardosrocinski.com.br/">
-<link rel="shortlink" href="https://eduardosrocinski.com.br/">
-<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://eduardosrocinski.com.br/wp-json/oembed/1.0/embed?url=https%3A%2F%2Feduardosrocinski.com.br%2F">
-<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://eduardosrocinski.com.br/wp-json/oembed/1.0/embed?url=https%3A%2F%2Feduardosrocinski.com.br%2F&format=xml">
-<!-- HFCM by 99 Robots - Snippet # 2: Verificação de Domínio -->
-<meta name="facebook-domain-verification" content="l3fm6hujaih25bbf8935y2439qumr7">
-<!-- /end HFCM by 99 Robots -->
-<!-- HFCM by 99 Robots - Snippet # 14: VALOR DA VENDA -->
-<script type="rocketlazyloadscript">
-fbq('track', 'Purchase', {
-  value: [full],
-  currency: 'BRL'
-});
-</script>
 
-<!-- /end HFCM by 99 Robots -->
-<meta name="facebook-domain-verification" content="l3fm6hujaih25bbf8935y2439qumr7"><meta name="generator" content="Elementor 3.31.3; features: additional_custom_breakpoints, e_element_cache; settings: css_print_method-external, google_font-enabled, font_display-swap">
-<meta name="facebook-domain-verification" content="l3fm6hujaih25bbf8935y2439qumr7">
-<!-- Google Tag Manager -->
-<script type="rocketlazyloadscript">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-PVXKHWH2');</script>
-<!-- End Google Tag Manager -->
-			<style>
-				.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload),
-				.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload) * {
-					background-image: none !important;
-				}
-				@media screen and (max-height: 1024px) {
-					.e-con.e-parent:nth-of-type(n+3):not(.e-lazyloaded):not(.e-no-lazyload),
-					.e-con.e-parent:nth-of-type(n+3):not(.e-lazyloaded):not(.e-no-lazyload) * {
-						background-image: none !important;
-					}
-				}
-				@media screen and (max-height: 640px) {
-					.e-con.e-parent:nth-of-type(n+2):not(.e-lazyloaded):not(.e-no-lazyload),
-					.e-con.e-parent:nth-of-type(n+2):not(.e-lazyloaded):not(.e-no-lazyload) * {
-						background-image: none !important;
-					}
-				}
-			</style>
 			<link rel="icon" href="images/Hard%E2%9A%A1-copiar-2-150x150.png" sizes="32x32">
 <link rel="icon" href="images/Hard%E2%9A%A1-copiar-2.png" sizes="192x192">
 <link rel="apple-touch-icon" href="images/Hard%E2%9A%A1-copiar-2.png">
-<meta name="msapplication-TileImage" content="https://eduardosrocinski.com.br/wp-content/uploads/2024/06/Hard⚡-copiar-2.png">
+<meta name="msapplication-TileImage" content="#">
 		<style id="wp-custom-css">
 			
-Código: 
 /* Remover espaço em branco lateral no mobile */
 html, body{
     overflow-x: hidden !important; 
@@ -882,7 +613,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				<div class="elementor-element elementor-element-353724fb elementor-align-justify elementor-tablet-align-justify elementor-mobile-align-justify btn3 elementor-widget elementor-widget-button" data-id="353724fb" data-element_type="widget" data-settings="{" _animation_mobile":"fadein"}"="" data-widget_type="button.default">
 				<div class="elementor-widget-container">
 									<div class="elementor-button-wrapper">
-					<a class="elementor-button elementor-button-link elementor-size-md" href="https://pay.kiwify.com.br/PxVqDXf">
+					<a class="elementor-button elementor-button-link elementor-size-md" href="https://pay.kiwify.com.br/uzjvI3z">
 						<span class="elementor-button-content-wrapper">
 									<span class="elementor-button-text">QUERO GARANTIR O MINHA PAGE AGORA COM (80% OFF)</span>
 					</span>
@@ -902,7 +633,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		<div class="elementor-element elementor-element-52bd66e e-con-full e-flex e-con e-child" data-id="52bd66e" data-element_type="container" data-settings="{" _ha_eqh_enable":false}"" style="color:#000;">
 				<div class="elementor-element elementor-element-3efe01a elementor-widget__width-initial elementor-widget elementor-widget-image" data-id="3efe01a" data-element_type="widget" data-widget_type="image.default">
 				<div class="elementor-widget-container">
-															<img width="512" height="512" decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20512%20512'%3E%3C/svg%3E" title="Camada 1" alt="Camada 1" loading="lazy" data-lazy-src="https://eduardosrocinski.com.br/wp-content/uploads/2024/05/Camada-1-1.png"><noscript><img width="512" height="512" decoding="async" src="https://eduardosrocinski.com.br/wp-content/uploads/2024/05/Camada-1-1.png" title="Camada 1" alt="Camada 1" loading="lazy" /></noscript>															</div>
+															<img width="512" height="512" decoding="async" src="images/Camada-1-1.png" title="Camada 1" alt="Camada 1" loading="lazy" data-lazy-src="https://eduardosrocinski.com.br/wp-content/uploads/2024/05/Camada-1-1.png"><noscript><img width="512" height="512" decoding="async" src="https://eduardosrocinski.com.br/wp-content/uploads/2024/05/Camada-1-1.png" title="Camada 1" alt="Camada 1" loading="lazy" /></noscript>															</div>
 				</div>
 				<div class="elementor-element elementor-element-fed1bc5 elementor-widget-mobile__width-initial elementor-widget elementor-widget-text-editor" data-id="fed1bc5" data-element_type="widget" data-widget_type="text-editor.default">
 				<div class="elementor-widget-container">
@@ -945,6 +676,151 @@ Se você quer sair do improviso e ter uma presença online que realmente transmi
 				</div>
 					</div>
 				</div>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-portfolio-showcase elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="portfolio-showcase" data-element_type="section" style="background:#000;padding:80px 0 70px 0;">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-portfolio-column" data-id="portfolio-column" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<div class="elementor-element elementor-element-portfolio-heading elementor-widget elementor-widget-heading" data-id="portfolio-heading" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+					<h2 class="elementor-heading-title elementor-size-default" style="margin-bottom:8px;color:#fff;">Portfólio em Ação</h2>
+					<p style="color:#c9c9c9;margin:0 0 24px 0;">Projetos reais com foco em conversão e identidade fiel ao negócio.</p>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-portfolio-cards elementor-widget elementor-widget-html" data-id="portfolio-cards" data-element_type="widget" data-widget_type="html.default">
+				<div class="elementor-widget-container">
+<style>
+.portfolio-shell{position:relative;overflow:hidden;padding:0 12px;}
+.portfolio-track{display:flex;gap:24px;transition:transform .4s ease;}
+.portfolio-card{flex:0 0 300px;background:linear-gradient(180deg,#0f0f18 0%,#111122 70%,#14142c 100%);border:1px solid #1f1f2e;border-radius:16px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,0.35);color:#fff;display:flex;flex-direction:column;min-height:260px;}
+.portfolio-card__body{padding:18px 16px 14px 16px;display:flex;flex-direction:column;gap:10px;flex:1;align-items:center;text-align:center;}
+.portfolio-card__title{font-family:'Montserrat',sans-serif;font-weight:700;font-size:19px;line-height:1.2;margin:0;}
+.portfolio-card__tag{font-family:'Montserrat',sans-serif;font-size:13px;color:#A3D1CC;text-transform:uppercase;letter-spacing:.08em;margin:0;}
+.portfolio-card__text{font-size:14px;color:#d9d9d9;line-height:1.5;margin:0;max-width:240px;}
+.portfolio-card__actions{margin-top:auto;display:flex;justify-content:center;}
+.portfolio-btn{background:#ffc548;color:#572671;font-weight:700;font-family:'Montserrat',sans-serif;border:none;border-radius:12px;padding:12px 18px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .25s ease;box-shadow:0 8px 20px rgba(255,197,72,0.35);}
+.portfolio-btn:hover{transform:translateY(-1px);filter:brightness(1.06);}
+.portfolio-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.28);border:1px solid #2a2a3a;color:#ffc548;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);transition:all .2s ease;box-shadow:0 10px 26px rgba(0,0,0,0.35);z-index:5;}
+.portfolio-nav:hover{background:rgba(163,209,204,0.22);}
+.portfolio-nav--prev{left:12px;}
+.portfolio-nav--next{right:12px;}
+@media (max-width:1024px){
+  .portfolio-card{flex-basis:280px;min-height:400px;}
+}
+@media (max-width:767px){
+  .portfolio-shell{padding:0;}
+  .portfolio-card{flex-basis:82vw;}
+  .portfolio-nav{top:unset;bottom:-52px;transform:none;background:rgba(255,255,255,0.08);border-color:#2a2a3a;}
+  .portfolio-nav--prev{left:10px;}
+  .portfolio-nav--next{right:10px;}
+}
+</style>
+<div class="portfolio-shell">
+  <button class="portfolio-nav portfolio-nav--prev" type="button" aria-label="Projeto anterior" data-portfolio-prev>&#10094;</button>
+  <div class="portfolio-window" style="overflow:hidden;">
+    <div class="portfolio-track">
+      <div class="portfolio-card">
+        <div class="portfolio-card__body">
+          <p class="portfolio-card__tag">Landing Page</p>
+          <h3 class="portfolio-card__title">Expopet Book</h3>
+          <p class="portfolio-card__text">Página de venda para e-book de tratamento de primeiro socorros para pets focada em arrecadas para o projeto da plataforma de adoção. </p>
+          <div class="portfolio-card__actions">
+            <a class="portfolio-btn" href="https://expobook.site/" target="_blank" rel="noopener">Ver portfólio</a>
+          </div>
+        </div>
+      </div>
+      <div class="portfolio-card">
+        <div class="portfolio-card__body">
+          <p class="portfolio-card__tag">Landing Page</p>
+          <h3 class="portfolio-card__title">Expopet Internacional</h3>
+          <p class="portfolio-card__text">Captação de doação para o projeto de plataforma de adoção na gringa. Linguagem: En-UK</p>
+          <div class="portfolio-card__actions">
+            <a class="portfolio-btn" href="https://projectpet.site/" target="_blank" rel="noopener">Ver portfólio</a>
+          </div>
+        </div>
+      </div>
+      <div class="portfolio-card">
+        <div class="portfolio-card__body">
+          <p class="portfolio-card__tag">Landing Page</p>
+          <h3 class="portfolio-card__title">Retífica Mais</h3>
+          <p class="portfolio-card__text">Landing Page para uma retífica em Belo Horizonte. Contém dados como se fosse um site convencional, mas em uma página única.</p>
+          <div class="portfolio-card__actions">
+            <a class="portfolio-btn" href="http://retificamais.site/" target="_blank" rel="noopener">Ver portfólio</a>
+          </div>
+        </div>
+      </div>
+      <div class="portfolio-card">
+        <div class="portfolio-card__body">
+          <p class="portfolio-card__tag">Site Institucional</p>
+          <h3 class="portfolio-card__title">Porto Betarello</h3>
+          <p class="portfolio-card__text">Site para refúgios de casas de temporada, com blog e galeria de fotos inclusos. Duas linguagens: pt-br e en-us. (Outros valores $)</p>
+          <div class="portfolio-card__actions">
+            <a class="portfolio-btn" href="https://www.portobetarello.com/" target="_blank" rel="noopener">Ver portfólio</a>
+          </div>
+        </div>
+      </div>
+	  <div class="portfolio-card">
+        <div class="portfolio-card__body">
+          <p class="portfolio-card__tag">Site Institucional</p>
+          <h3 class="portfolio-card__title">Assessoria Pulicarpo</h3>
+          <p class="portfolio-card__text">Site para assessoria jurídica e serviços cartorários diretamente com uma advogada. Conta com um robusto formulário no design. (Outros valores $)</p>
+          <div class="portfolio-card__actions">
+            <a class="portfolio-btn" href="https://assessoriapulicarpo.com/" target="_blank" rel="noopener">Ver portfólio</a>
+          </div>
+        </div>
+      </div>
+	  <div class="portfolio-card">
+        <div class="portfolio-card__body">
+          <p class="portfolio-card__tag">SaaS</p>
+          <h3 class="portfolio-card__title">Expopet</h3>
+          <p class="portfolio-card__text">Plataforma de adoção de animais com banco de dados. Ainda em andamento. (Fazer orçamento)</p>
+          <div class="portfolio-card__actions">
+            <a class="portfolio-btn" href="https://expopet-proj-uwlg.vercel.app/" target="_blank" rel="noopener">Ver portfólio</a>
+          </div>
+        </div>
+      </div>
+	  <div class="portfolio-card">
+        <div class="portfolio-card__body">
+          <p class="portfolio-card__tag">Saas</p>
+          <h3 class="portfolio-card__title">CryptoGate</h3>
+          <p class="portfolio-card__text">Plataforma de pagamento em Vibe coding para que o cliente consiga transformar da maneira de desejar. Ainda em andamento. (Fazer orçamento)</p>
+          <div class="portfolio-card__actions">
+            <a class="portfolio-btn" href="https://global-coin-bridge.vercel.app/" target="_blank" rel="noopener">Ver portfólio</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="portfolio-nav portfolio-nav--next" type="button" aria-label="Próximo projeto" data-portfolio-next>&#10095;</button>
+</div>
+<script>
+(function() {
+  const track = document.querySelector('.portfolio-track');
+  const cards = Array.from(document.querySelectorAll('.portfolio-card'));
+  const prev = document.querySelector('[data-portfolio-prev]');
+  const next = document.querySelector('[data-portfolio-next]');
+  if (!track || cards.length === 0) return;
+  let index = 0;
+  let step = cards[0].getBoundingClientRect().width + 24;
+  const updateStep = () => { step = cards[0].getBoundingClientRect().width + 24; moveTo(index, false); };
+  const moveTo = (i, animate = true) => {
+    index = (i + cards.length) % cards.length;
+    if (!animate) track.style.transition = 'none';
+    requestAnimationFrame(() => {
+      track.style.transform = `translateX(-${index * step}px)`;
+      if (!animate) requestAnimationFrame(() => track.style.transition = 'transform .4s ease');
+    });
+  };
+  prev?.addEventListener('click', () => moveTo(index - 1));
+  next?.addEventListener('click', () => moveTo(index + 1));
+  window.addEventListener('resize', () => updateStep());
+})();
+</script>
+				</div>
+				</div>
+			</div>
+					</div>
+				</div>
+				</section>
 				<section class="elementor-section elementor-top-section elementor-element elementor-element-72835d4e elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="72835d4e" data-element_type="section" data-settings="\{" _ha_eqh_enable":false\}\"="" style="background-color:#572671;">
 						<div class="elementor-container elementor-column-gap-default">
 					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-305ba68d" data-id="305ba68d" data-element_type="column">
@@ -1106,23 +982,18 @@ Se você quer sair do improviso e ter uma presença online que realmente transmi
 					document.addEventListener( event, lazyloadRunObserver );
 				} );
 			</script>
-			<noscript><img height="1" width="1" style="display: none;" src="https://www.facebook.com/tr?id=1110408347035963&ev=PageView&noscript=1&cd%5Bpage_title%5D=Capcut+Hard+2.0+-+Efeitos+Marvel&cd%5Bpost_type%5D=page&cd%5Bpost_id%5D=4293&cd%5Bplugin%5D=PixelYourSite&cd%5Buser_role%5D=guest&cd%5Bevent_url%5D=eduardosrocinski.com.br%2F" alt=""></noscript>
+			<noscript><img height="1" width="1" style="display: none;" src="#" alt=""></noscript>
 <script type="rocketlazyloadscript" src="js/hooks.min.js" id="wp-hooks-js"></script>
 <script type="rocketlazyloadscript" src="js/i18n.min.js" id="wp-i18n-js"></script>
 <script type="rocketlazyloadscript" id="wp-i18n-js-after">
 wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
 </script>
-<script id="presto-components-js-extra">
-var prestoComponents = {"url":"https:\/\/eduardosrocinski.com.br\/wp-content\/plugins\/presto-player\/dist\/components\/web-components\/web-components.esm.js?ver=1753362795"};
-var prestoPlayer = {"plugin_url":"https:\/\/eduardosrocinski.com.br\/wp-content\/plugins\/presto-player\/","logged_in":"","root":"https:\/\/eduardosrocinski.com.br\/wp-json\/","nonce":"5071c2ba12","ajaxurl":"https:\/\/eduardosrocinski.com.br\/wp-admin\/admin-ajax.php","isAdmin":"","isSetup":{"bunny":false},"proVersion":"","isPremium":"","wpVersionString":"wp\/v2\/","prestoVersionString":"presto-player\/v1\/","debug":"","debug_navigator":"","i18n":{"skip":"Skip","rewatch":"Rewatch","emailPlaceholder":"Email address","emailDefaultHeadline":"Enter your email to play this episode.","chapters":"Chapters","show_chapters":"Show Chapters","hide_chapters":"Hide Chapters","restart":"Restart","rewind":"Rewind {seektime}s","play":"Play","pause":"Pause","fastForward":"Forward {seektime}s","seek":"Seek","seekLabel":"{currentTime} of {duration}","played":"Played","buffered":"Buffered","currentTime":"Current time","duration":"Duration","volume":"Volume","mute":"Mute","unmute":"Unmute","enableCaptions":"Enable captions","disableCaptions":"Disable captions","download":"Download","enterFullscreen":"Enter fullscreen","exitFullscreen":"Exit fullscreen","frameTitle":"Player for {title}","captions":"Captions","settings":"Settings","pip":"PIP","menuBack":"Go back to previous menu","speed":"Speed","normal":"Normal","quality":"Quality","loop":"Loop","start":"Start","end":"End","all":"All","reset":"Reset","disabled":"Disabled","enabled":"Enabled","advertisement":"Ad","qualityBadge":{"2160":"4K","1440":"HD","1080":"HD","720":"HD","576":"SD","480":"SD"},"auto":"AUTO","upNext":"Up Next","startOver":"Start Over"}};
-var prestoComponents = {"url":"https:\/\/eduardosrocinski.com.br\/wp-content\/plugins\/presto-player\/dist\/components\/web-components\/web-components.esm.js?ver=1753362795"};
-var prestoPlayer = {"plugin_url":"https:\/\/eduardosrocinski.com.br\/wp-content\/plugins\/presto-player\/","logged_in":"","root":"https:\/\/eduardosrocinski.com.br\/wp-json\/","nonce":"5071c2ba12","ajaxurl":"https:\/\/eduardosrocinski.com.br\/wp-admin\/admin-ajax.php","isAdmin":"","isSetup":{"bunny":false},"proVersion":"","isPremium":"","wpVersionString":"wp\/v2\/","prestoVersionString":"presto-player\/v1\/","debug":"","debug_navigator":"","i18n":{"skip":"Skip","rewatch":"Rewatch","emailPlaceholder":"Email address","emailDefaultHeadline":"Enter your email to play this episode.","chapters":"Chapters","show_chapters":"Show Chapters","hide_chapters":"Hide Chapters","restart":"Restart","rewind":"Rewind {seektime}s","play":"Play","pause":"Pause","fastForward":"Forward {seektime}s","seek":"Seek","seekLabel":"{currentTime} of {duration}","played":"Played","buffered":"Buffered","currentTime":"Current time","duration":"Duration","volume":"Volume","mute":"Mute","unmute":"Unmute","enableCaptions":"Enable captions","disableCaptions":"Disable captions","download":"Download","enterFullscreen":"Enter fullscreen","exitFullscreen":"Exit fullscreen","frameTitle":"Player for {title}","captions":"Captions","settings":"Settings","pip":"PIP","menuBack":"Go back to previous menu","speed":"Speed","normal":"Normal","quality":"Quality","loop":"Loop","start":"Start","end":"End","all":"All","reset":"Reset","disabled":"Disabled","enabled":"Enabled","advertisement":"Ad","qualityBadge":{"2160":"4K","1440":"HD","1080":"HD","720":"HD","576":"SD","480":"SD"},"auto":"AUTO","upNext":"Up Next","startOver":"Start Over"}};
-</script>
+
 <script type="rocketlazyloadscript" data-minify="1" src="js/player-static.js" data-rocket-type="module" defer=""></script><script type="rocketlazyloadscript" id="rocket-browser-checker-js-after">
 "use strict";var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||!1,descriptor.configurable=!0,"value"in descriptor&&(descriptor.writable=!0),Object.defineProperty(target,descriptor.key,descriptor)}}return function(Constructor,protoProps,staticProps){return protoProps&&defineProperties(Constructor.prototype,protoProps),staticProps&&defineProperties(Constructor,staticProps),Constructor}}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor))throw new TypeError("Cannot call a class as a function")}var RocketBrowserCompatibilityChecker=function(){function RocketBrowserCompatibilityChecker(options){_classCallCheck(this,RocketBrowserCompatibilityChecker),this.passiveSupported=!1,this._checkPassiveOption(this),this.options=!!this.passiveSupported&&options}return _createClass(RocketBrowserCompatibilityChecker,[{key:"_checkPassiveOption",value:function(self){try{var options={get passive(){return!(self.passiveSupported=!0)}};window.addEventListener("test",null,options),window.removeEventListener("test",null,options)}catch(err){self.passiveSupported=!1}}},{key:"initRequestIdleCallback",value:function(){!1 in window&&(window.requestIdleCallback=function(cb){var start=Date.now();return setTimeout(function(){cb({didTimeout:!1,timeRemaining:function(){return Math.max(0,50-(Date.now()-start))}})},1)}),!1 in window&&(window.cancelIdleCallback=function(id){return clearTimeout(id)})}},{key:"isDataSaverModeOn",value:function(){return"connection"in navigator&&!0===navigator.connection.saveData}},{key:"supportsLinkPrefetch",value:function(){var elem=document.createElement("link");return elem.relList&&elem.relList.supports&&elem.relList.supports("prefetch")&&window.IntersectionObserver&&"isIntersecting"in IntersectionObserverEntry.prototype}},{key:"isSlowConnection",value:function(){return"connection"in navigator&&"effectiveType"in navigator.connection&&("2g"===navigator.connection.effectiveType||"slow-2g"===navigator.connection.effectiveType)}}]),RocketBrowserCompatibilityChecker}();
 </script>
 <script id="rocket-preload-links-js-extra">
-var RocketPreloadLinksConfig = {"excludeUris":"\/(?:.+\/)?feed(?:\/(?:.+\/?)?)?$|\/(?:.+\/)?embed\/|\/(index\\.php\/)?wp\\-json(\/.*|$)|\/wp-admin\/|\/logout\/|\/wp-login.php|\/refer\/|\/go\/|\/recommend\/|\/recommends\/","usesTrailingSlash":"1","imageExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|pdf|doc|docx|xls|xlsx|php","fileExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|pdf|doc|docx|xls|xlsx|php|html|htm","siteUrl":"https:\/\/eduardosrocinski.com.br","onHoverDelay":"100","rateThrottle":"3"};
+var RocketPreloadLinksConfig = {"excludeUris":"\/(?:.+\/)?feed(?:\/(?:.+\/?)?)?$|\/(?:.+\/)?embed\/|\/(index\\.php\/)?wp\\-json(\/.*|$)|\/wp-admin\/|\/logout\/|\/wp-login.php|\/refer\/|\/go\/|\/recommend\/|\/recommends\/","usesTrailingSlash":"1","imageExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|pdf|doc|docx|xls|xlsx|php","fileExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|pdf|doc|docx|xls|xlsx|php|html|htm","siteUrl":"https:\/\/veldec.site","onHoverDelay":"100","rateThrottle":"3"};
 </script>
 <script type="rocketlazyloadscript" id="rocket-preload-links-js-after">
 (function() {
@@ -1134,21 +1005,21 @@ var RocketPreloadLinksConfig = {"excludeUris":"\/(?:.+\/)?feed(?:\/(?:.+\/?)?)?$
 <script type="rocketlazyloadscript" src="js/frontend-modules.min.js" id="elementor-frontend-modules-js" defer=""></script>
 <script type="rocketlazyloadscript" src="js/core.min.js" id="jquery-ui-core-js" defer=""></script>
 <script type="rocketlazyloadscript" id="elementor-frontend-js-before">
-var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Compartilhar no Facebook","shareOnTwitter":"Compartilhar no Twitter","pinIt":"Fixar","download":"Baixar","downloadImage":"Baixar imagem","fullscreen":"Tela cheia","zoom":"Zoom","share":"Compartilhar","playVideo":"Reproduzir v\u00eddeo","previous":"Anterior","next":"Pr\u00f3ximo","close":"Fechar","a11yCarouselPrevSlideMessage":"Slide anterior","a11yCarouselNextSlideMessage":"Pr\u00f3ximo slide","a11yCarouselFirstSlideMessage":"Este \u00e9 o primeiro slide","a11yCarouselLastSlideMessage":"Este \u00e9 o \u00faltimo slide","a11yCarouselPaginationBulletMessage":"Ir para o slide"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":931,"lg":1081,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Dispositivos m\u00f3veis no modo retrato","value":930,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Dispositivos m\u00f3veis no modo paisagem","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet no modo retrato","value":1080,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet no modo paisagem","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Notebook","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Tela ampla (widescreen)","value":2400,"default_value":2400,"direction":"min","is_enabled":false}},"hasCustomBreakpoints":true},"version":"3.31.3","is_static":false,"experimentalFeatures":{"additional_custom_breakpoints":true,"container":true,"theme_builder_v2":true,"hello-theme-header-footer":true,"nested-elements":true,"e_element_cache":true,"home_screen":true,"global_classes_should_enforce_capabilities":true,"e_variables":true,"cloud-library":true,"e_opt_in_v4_page":true},"urls":{"assets":"https:\/\/eduardosrocinski.com.br\/wp-content\/plugins\/elementor\/assets\/","ajaxurl":"https:\/\/eduardosrocinski.com.br\/wp-admin\/admin-ajax.php","uploadUrl":"https:\/\/eduardosrocinski.com.br\/wp-content\/uploads"},"nonces":{"floatingButtonsClickTracking":"19435952f0"},"swiperClass":"swiper","settings":{"page":{"ha_cmc_init_switcher":"no"},"editorPreferences":[]},"kit":{"body_background_background":"gradient","viewport_mobile":930,"viewport_tablet":1080,"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description","hello_header_logo_type":"title","ha_rpb_enable":"no"},"post":{"id":4293,"title":"%E2%9A%A1Efeitos%20VFX%20com%20o%20Celular","excerpt":"","featuredImage":false}};
+var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Compartilhar no Facebook","shareOnTwitter":"Compartilhar no Twitter","pinIt":"Fixar","download":"Baixar","downloadImage":"Baixar imagem","fullscreen":"Tela cheia","zoom":"Zoom","share":"Compartilhar","playVideo":"Reproduzir v\u00eddeo","previous":"Anterior","next":"Pr\u00f3ximo","close":"Fechar","a11yCarouselPrevSlideMessage":"Slide anterior","a11yCarouselNextSlideMessage":"Pr\u00f3ximo slide","a11yCarouselFirstSlideMessage":"Este \u00e9 o primeiro slide","a11yCarouselLastSlideMessage":"Este \u00e9 o \u00faltimo slide","a11yCarouselPaginationBulletMessage":"Ir para o slide"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":931,"lg":1081,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Dispositivos m\u00f3veis no modo retrato","value":930,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Dispositivos m\u00f3veis no modo paisagem","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet no modo retrato","value":1080,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet no modo paisagem","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Notebook","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Tela ampla (widescreen)","value":2400,"default_value":2400,"direction":"min","is_enabled":false}},"hasCustomBreakpoints":true},"version":"3.31.3","is_static":false,"experimentalFeatures":{"additional_custom_breakpoints":true,"container":true,"theme_builder_v2":true,"hello-theme-header-footer":true,"nested-elements":true,"e_element_cache":true,"home_screen":true,"global_classes_should_enforce_capabilities":true,"e_variables":true,"cloud-library":true,"e_opt_in_v4_page":true},"urls":{"assets":"https:\/\/veldec.site\/wp-content\/plugins\/elementor\/assets\/","ajaxurl":"https:\/\/veldec.site\/wp-admin\/admin-ajax.php","uploadUrl":"https:\/\/veldec.site\/wp-content\/uploads"},"nonces":{"floatingButtonsClickTracking":"19435952f0"},"swiperClass":"swiper","settings":{"page":{"ha_cmc_init_switcher":"no"},"editorPreferences":[]},"kit":{"body_background_background":"gradient","viewport_mobile":930,"viewport_tablet":1080,"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description","hello_header_logo_type":"title","ha_rpb_enable":"no"},"post":{"id":4293,"title":"%E2%9A%A1Efeitos%20VFX%20com%20o%20Celular","excerpt":"","featuredImage":false}};
 </script>
 <script type="rocketlazyloadscript" src="js/frontend.min_1.js" id="elementor-frontend-js" defer=""></script>
 <script type="rocketlazyloadscript" src="js/extension-reading-progress-bar.min.js" id="happy-reading-progress-bar-js" defer=""></script>
 <script id="eael-general-js-extra">
-var localize = {"ajaxurl":"https:\/\/eduardosrocinski.com.br\/wp-admin\/admin-ajax.php","nonce":"646cdb41b4","i18n":{"added":"Adicionado ","compare":"Comparar","loading":"Carregando..."},"eael_translate_text":{"required_text":"\u00e9 um campo obrigat\u00f3rio","invalid_text":"Inv\u00e1lido","billing_text":"Faturamento","shipping_text":"Envio","fg_mfp_counter_text":"de"},"page_permalink":"https:\/\/eduardosrocinski.com.br\/","cart_redirectition":"","cart_page_url":"","el_breakpoints":{"mobile":{"label":"Dispositivos m\u00f3veis no modo retrato","value":930,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Dispositivos m\u00f3veis no modo paisagem","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet no modo retrato","value":1080,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet no modo paisagem","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Notebook","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Tela ampla (widescreen)","value":2400,"default_value":2400,"direction":"min","is_enabled":false}}};
+var localize = {"ajaxurl":"https:\/\/veldec.site\/wp-admin\/admin-ajax.php","nonce":"646cdb41b4","i18n":{"added":"Adicionado ","compare":"Comparar","loading":"Carregando..."},"eael_translate_text":{"required_text":"\u00e9 um campo obrigat\u00f3rio","invalid_text":"Inv\u00e1lido","billing_text":"Faturamento","shipping_text":"Envio","fg_mfp_counter_text":"de"},"page_permalink":"https:\/\/veldec.site\/","cart_redirectition":"","cart_page_url":"","el_breakpoints":{"mobile":{"label":"Dispositivos m\u00f3veis no modo retrato","value":930,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Dispositivos m\u00f3veis no modo paisagem","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet no modo retrato","value":1080,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet no modo paisagem","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Notebook","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Tela ampla (widescreen)","value":2400,"default_value":2400,"direction":"min","is_enabled":false}}};
 </script>
 <script type="rocketlazyloadscript" src="js/general.min.js" id="eael-general-js" defer=""></script>
 <script id="happy-elementor-addons-js-extra">
-var HappyLocalize = {"ajax_url":"https:\/\/eduardosrocinski.com.br\/wp-admin\/admin-ajax.php","nonce":"c3b9a90113","pdf_js_lib":"https:\/\/eduardosrocinski.com.br\/wp-content\/plugins\/happy-elementor-addons\/assets\/vendor\/pdfjs\/lib"};
+var HappyLocalize = {"ajax_url":"https:\/\/veldec.site\/wp-admin\/admin-ajax.php","nonce":"c3b9a90113","pdf_js_lib":"https:\/\/veldec.site\/wp-content\/plugins\/happy-elementor-addons\/assets\/vendor\/pdfjs\/lib"};
 </script>
 <script type="rocketlazyloadscript" src="js/happy-addons.min.js" id="happy-elementor-addons-js" defer=""></script>
 <script type="rocketlazyloadscript" src="js/webpack-pro.runtime.min.js" id="elementor-pro-webpack-runtime-js" defer=""></script>
 <script type="rocketlazyloadscript" id="elementor-pro-frontend-js-before">
-var ElementorProFrontendConfig = {"ajaxurl":"https:\/\/eduardosrocinski.com.br\/wp-admin\/admin-ajax.php","nonce":"812f7c22f1","urls":{"assets":"https:\/\/eduardosrocinski.com.br\/wp-content\/plugins\/elementor-pro\/assets\/","rest":"https:\/\/eduardosrocinski.com.br\/wp-json\/"},"settings":{"lazy_load_background_images":true},"popup":{"hasPopUps":true},"shareButtonsNetworks":{"facebook":{"title":"Facebook","has_counter":true},"twitter":{"title":"Twitter"},"linkedin":{"title":"LinkedIn","has_counter":true},"pinterest":{"title":"Pinterest","has_counter":true},"reddit":{"title":"Reddit","has_counter":true},"vk":{"title":"VK","has_counter":true},"odnoklassniki":{"title":"OK","has_counter":true},"tumblr":{"title":"Tumblr"},"digg":{"title":"Digg"},"skype":{"title":"Skype"},"stumbleupon":{"title":"StumbleUpon","has_counter":true},"mix":{"title":"Mix"},"telegram":{"title":"Telegram"},"pocket":{"title":"Pocket","has_counter":true},"xing":{"title":"XING","has_counter":true},"whatsapp":{"title":"WhatsApp"},"email":{"title":"Email"},"print":{"title":"Print"},"x-twitter":{"title":"X"},"threads":{"title":"Threads"}},"facebook_sdk":{"lang":"pt_BR","app_id":""},"lottie":{"defaultAnimationUrl":"https:\/\/eduardosrocinski.com.br\/wp-content\/plugins\/elementor-pro\/modules\/lottie\/assets\/animations\/default.json"}};
+var ElementorProFrontendConfig = {"ajaxurl":"https:\/\/veldec.site\/wp-admin\/admin-ajax.php","nonce":"812f7c22f1","urls":{"assets":"https:\/\/veldec.site\/wp-content\/plugins\/elementor-pro\/assets\/","rest":"https:\/\/veldec.site\/wp-json\/"},"settings":{"lazy_load_background_images":true},"popup":{"hasPopUps":true},"shareButtonsNetworks":{"facebook":{"title":"Facebook","has_counter":true},"twitter":{"title":"Twitter"},"linkedin":{"title":"LinkedIn","has_counter":true},"pinterest":{"title":"Pinterest","has_counter":true},"reddit":{"title":"Reddit","has_counter":true},"vk":{"title":"VK","has_counter":true},"odnoklassniki":{"title":"OK","has_counter":true},"tumblr":{"title":"Tumblr"},"digg":{"title":"Digg"},"skype":{"title":"Skype"},"stumbleupon":{"title":"StumbleUpon","has_counter":true},"mix":{"title":"Mix"},"telegram":{"title":"Telegram"},"pocket":{"title":"Pocket","has_counter":true},"xing":{"title":"XING","has_counter":true},"whatsapp":{"title":"WhatsApp"},"email":{"title":"Email"},"print":{"title":"Print"},"x-twitter":{"title":"X"},"threads":{"title":"Threads"}},"facebook_sdk":{"lang":"pt_BR","app_id":""},"lottie":{"defaultAnimationUrl":"https:\/\/veldec.site\/wp-content\/plugins\/elementor-pro\/modules\/lottie\/assets\/animations\/default.json"}};
 </script>
 <script type="rocketlazyloadscript" src="js/frontend.min.js" id="elementor-pro-frontend-js" defer=""></script>
 <script type="rocketlazyloadscript" src="js/elements-handlers.min.js" id="pro-elements-handlers-js" defer=""></script>
@@ -1186,22 +1057,6 @@ item.href += '&' + utmParamQueryString.toString();
     console.log("UTM Campaign:", utmCampaign);
     console.log("UTM Content:", utmContent);
     console.log("UTM Term:", utmTerm);
-
-    // Preenche os campos do formulário, se eles existirem
-    const utmSourceField = document.getElementById("mauticform_input_formulariocheckoutcapcuthard_utm_source");
-    if (utmSourceField) utmSourceField.value = utmSource;
-
-    const utmMediumField = document.getElementById("mauticform_input_formulariocheckoutcapcuthard_utm_medium");
-    if (utmMediumField) utmMediumField.value = utmMedium;
-
-    const utmCampaignField = document.getElementById("mauticform_input_formulariocheckoutcapcuthard_utm_campaign");
-    if (utmCampaignField) utmCampaignField.value = utmCampaign;
-
-    const utmContentField = document.getElementById("mauticform_input_formulariocheckoutcapcuthard_utm_content");
-    if (utmContentField) utmContentField.value = utmContent;
-
-    const utmTermField = document.getElementById("mauticform_input_formulariocheckoutcapcuthard_utm_term");
-    if (utmTermField) utmTermField.value = utmTerm;
   });
 </script>
 
@@ -1212,11 +1067,6 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
 
 
 </body></html>
-
-
-
-
-
 
 
 
